@@ -36,10 +36,15 @@ class Cell:
             yield (self.grid[self.x - 1][self.y], 7)
             if self.y > 0:
                 yield (self.grid[self.x - 1][self.y-1], 0)
-                yield (self.grid[self.x][self.y - 1], 1)
+                
             if self.y < len(self.grid[0])-1:
                 yield (self.grid[self.x - 1][self.y + 1], 6)
-                yield (self.grid[self.x][self.y + 1], 5)
+                
+        if self.y > 0:
+            yield (self.grid[self.x][self.y - 1], 1)
+        
+        if self.y < len(self.grid[0])-1:
+            yield (self.grid[self.x][self.y + 1], 5)
 
         if self.x < len(self.grid)-1:
             yield (self.grid[self.x + 1][self.y], 3)
@@ -59,6 +64,8 @@ class Cell:
                 index += 1
 
         self.collapsed = True
+
+        print(self.x, self.y)
 
         for neighbor in self.neighbors():
             neighbor[0].collapse((neighbor[1]+4) %
@@ -108,8 +115,6 @@ class Cell:
                         self.collapsed = True
 
                     for neighbor in self.neighbors():
-                        print(self.options)
-                        print(self.handshake(neighbor[1]))
                         neighbor[0].collapse((neighbor[1]+4) %
                                              8, self.handshake(neighbor[1]))
 
@@ -129,10 +134,9 @@ class Cell:
                         self.collapsed = True
 
                     for neighbor in self.neighbors():
-                        print(self.options)
-                        print(self.handshake(neighbor[1]))
                         neighbor[0].collapse((neighbor[1]+4) %
                                              8, self.handshake(neighbor[1]))
+        
 
 
 class Board:
@@ -149,6 +153,7 @@ class Board:
                 elif entropy < lowest[0][2] and entropy > 1:
                     lowest.clear()
                     lowest.append((i, j, entropy))
+        print(f"I chose {lowest}")
         return random.choice(lowest)[0:2]
 
     def is_done(self) -> bool:
@@ -164,6 +169,7 @@ class Board:
             self.grid[target[0]][target[1]].choose_random_option()
 
 
+
 def main():
     HEIGHT = 10
     WIDTH = 10
@@ -176,10 +182,6 @@ def main():
 
     board.wave_function()
 
-    for row in board.grid:
-        for cell in row:
-            print(cell.x, cell.y)
-            print(cell.options[0])
 
     pygame.init()
 
