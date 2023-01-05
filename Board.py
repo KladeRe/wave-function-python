@@ -2,8 +2,14 @@ import random
 from Cell import *
 
 class Board:
-    def __init__(self, grid):
-        self.grid = grid
+    def __init__(self, width, height):
+        self.grid = []
+        self.width = width
+        self.height = height
+        for i in range(width):
+            self.grid.append([])
+            for j in range(height):
+                self.grid[i].append(Cell(i, j, self.grid))
 
     # Finds and picks the cell with the lowest entropy (least amount of options)
     def get_lowest_entropy(self):
@@ -28,8 +34,8 @@ class Board:
         return True
 
     
-    def wave_function(self):
+    """ def wave_function(self):
         while not self.is_done():
             target = self.get_lowest_entropy()
-            self.grid[target[0]][target[1]].choose_random_option()
+            self.grid[target[0]][target[1]].choose_random_option() """
 

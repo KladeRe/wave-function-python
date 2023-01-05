@@ -6,17 +6,10 @@ def main():
     WIDTH = 10
 
     # The board is inizialized here
-    board = Board([])
-    for i in range(WIDTH):
-        board.grid.append([])
-        for j in range(HEIGHT):
-            board.grid[i].append(Cell(i, j, board))
-
-    # This does what is says
-    board.wave_function()
+    board = Board(WIDTH, HEIGHT)
 
     # This makes the end result visible
-    makeGUI(HEIGHT, WIDTH, board.grid)
+    makeGUI(HEIGHT, WIDTH, board)
 
 if __name__ == "__main__":
     main()
