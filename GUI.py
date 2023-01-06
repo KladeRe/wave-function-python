@@ -8,7 +8,7 @@ def makeGUI(HEIGHT, WIDTH, board):
 
     clock = pygame.time.Clock()
 
-    image_WIDTH = 48
+    image_WIDTH = 24
     image_HEIGHT = image_WIDTH
 
     pygame.init()
