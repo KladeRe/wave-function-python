@@ -4,7 +4,7 @@ Instead of using rules the blocks compare the edges of all possible tiles to mak
 
 The end result is visualized through **pygame**.
 
-If you are using this application remember to:
+When you are using this application remember to:
 ```
     pip install pygame
 ```
@@ -18,4 +18,4 @@ or
     python main.py
 ```
 
-You have to be in the root directory **root directory** of the application for the command to work.
+You have to be in the **src/ directory** of the application for the command to work.
